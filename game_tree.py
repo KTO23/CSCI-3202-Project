@@ -1,6 +1,7 @@
 
 from mancala import Mancala
 
+
 class Node:
     def __init__(self, past_moves, p1mancala, p2mancala, possible_moves):
         self.past_moves = past_moves
@@ -60,4 +61,3 @@ def game_tree(past_moves = [], pits_per_player=6, stones_per_pit=4, depth=5):
             del currentgame
 
     return root_node
-    
