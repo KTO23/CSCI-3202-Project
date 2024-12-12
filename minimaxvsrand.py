@@ -7,7 +7,7 @@ starttime = time.perf_counter()
 
 results = []
 num_games = 100
-depth=4
+depth=5
 
 for x in range(num_games):
     game = Mancala(pits_per_player = 6, stones_per_pit = 4)
