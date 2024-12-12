@@ -12,6 +12,13 @@ def alphabeta(mancala, depth, player):
     maxval = float('-inf')
     bestmove = None
 
+    
+    if player == 1:
+        this_game_tree.children.sort(key=lambda child: child.p1mancala - child.p2mancala, reverse=True)
+    else:
+        this_game_tree.children.sort(key=lambda child: child.p2mancala - child.p1mancala, reverse=True)
+    
+
     for child in this_game_tree.children:
         childval = minvalue(child, player, alpha, beta)
         if childval > maxval:
@@ -23,11 +30,16 @@ def alphabeta(mancala, depth, player):
     
 
 def minvalue(node, player, alpha, beta):
-    if len(node.children) == 0:
-        if player == 1:
+    if player == 1:
+        if len(node.children) == 0:
             return int(node.p1mancala - node.p2mancala)
         else:
+            node.children.sort(key=lambda child: child.p1mancala - child.p2mancala)
+    else:
+        if len(node.children) == 0:
             return int(node.p2mancala - node.p1mancala)
+        else:
+            node.children.sort(key=lambda child: child.p2mancala - child.p1mancala)
     
     val = float('inf')
 
@@ -45,12 +57,16 @@ def minvalue(node, player, alpha, beta):
 
 
 def maxvalue(node, player, alpha, beta):
-    if len(node.children) == 0:
-        if player == 1:
+    if player == 1:
+        if len(node.children) == 0:
             return int(node.p1mancala - node.p2mancala)
         else:
+            node.children.sort(key=lambda child: child.p1mancala - child.p2mancala, reverse=True)
+    else:
+        if len(node.children) == 0:
             return int(node.p2mancala - node.p1mancala)
-    
+        else:
+            node.children.sort(key=lambda child: child.p2mancala - child.p1mancala, reverse=True)
 
     val = float('-inf')
 
